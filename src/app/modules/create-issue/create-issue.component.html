@@ -1,0 +1,161 @@
+<section class="create-issue-container">
+  <div class="heading global-text--heading-4">
+    {{'Create User Stories/Tasks/Bugs' | translate}}
+  </div>
+  <section class="create-issue-form">
+    <form [formGroup]="createIssueForm">
+      <div class="row">
+        <div class="column">
+          <mat-label for="summary">{{'Summary' | translate}}</mat-label>
+          <mat-form-field class="summary" appearance="fill">
+            <input
+              formControlName="summary"
+              matInput
+              placeholder="Add Summary"
+            />
+            <mat-error
+              *ngIf="createIssueForm.get('summary')?.hasError('required')"
+              >{{'required' | translate}}</mat-error
+            >
+            <mat-error
+              *ngIf="this.createIssueForm.get('summary')?.hasError('maxlength')"
+              >Length should be 150 characters</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <mat-label>{{'Type' | translate}}</mat-label>
+          <mat-form-field appearance="fill">
+            <mat-select formControlName="type" placeholder="Select">
+              <mat-option *ngFor="let item of type" [value]="item.value">
+                {{ item.key }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="createIssueForm.get('type')?.hasError('required')"
+              >{{'required' | translate}}</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="column">
+          <mat-label for="Project">{{'project' | translate}}</mat-label>
+          <mat-form-field appearance="fill">
+            <mat-select formControlName="projectID" placeholder="Select">
+              <mat-option *ngFor="let item of project" [value]="item.value">
+                {{ item.key }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="createIssueForm.get('projectID')?.hasError('required')"
+              >{{'required' | translate}}</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <mat-label for="description">{{'Description' | translate}}</mat-label>
+          <mat-form-field class="description" appearance="fill">
+            <textarea
+              formControlName="description"
+              placeholder="Write description"
+              matInput
+              class="description-input"
+              name=""
+              id=""
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <mat-label for="Type">{{'Priority' | translate}}</mat-label>
+          <mat-form-field appearance="fill">
+            <mat-select placeholder="Select" formControlName="priority">
+              <mat-option *ngFor="let item of priority" [value]="item.value">
+                {{ item.key }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="createIssueForm.get('priority')?.hasError('required')"
+              >{{'required' | translate}}</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="column">
+          <mat-label for="Project">{{'Assignee' | translate}}</mat-label>
+          <mat-form-field appearance="fill">
+            <mat-select placeholder="Select" formControlName="assignee">
+              <mat-option *ngFor="let item of assignees" [value]="item.value">
+                {{ item.key }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="createIssueForm.get('assignee')?.hasError('required')"
+              >{{'required' | translate}}</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <mat-label for="Type">{{'Tags' | translate }}</mat-label>
+          <mat-form-field appearance="fill">
+            <mat-select placeholder="Select" formControlName="tags" multiple>
+              <mat-option
+                *ngFor="let item of ['HU-22', 'Angular track']"
+                [value]="item"
+              >
+                {{ item }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="column">
+          <mat-label for="Project">{{'Sprint' | translate}}</mat-label>
+          <mat-form-field appearance="fill">
+            <mat-select placeholder="Select" formControlName="sprint">
+              <mat-option
+                *ngFor="let item of ['Sprint 1', 'Sprint 2', 'Sprint 3']"
+                [value]="item"
+              >
+                {{ item }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <mat-label for="Story Points">{{'Story Points' | translate}}</mat-label>
+          <mat-form-field class="story-points" appearance="fill">
+            <input
+              formControlName="storyPoint"
+              type="number"
+              matInput
+              placeholder="0,1,2..."
+            />
+            <mat-error
+              *ngIf="createIssueForm.get('storyPoint')?.hasError('required')"
+              >{{'required' | translate}}</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-actions">
+        <app-button
+          (btnClick)="resetForm()"
+          [text]="'RESET'"
+          [btnType]="'secondary'"
+        ></app-button>
+        <app-button
+          [disabled]="!createIssueForm.valid"
+          (btnClick)="submitForm(); openDialog()"
+          [text]="'CREATE'"
+          [btnType]="'primary'"
+        ></app-button>
+      </div>
+    </form>
+  </section>
+</section>

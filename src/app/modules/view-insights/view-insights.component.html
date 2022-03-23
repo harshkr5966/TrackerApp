@@ -1,0 +1,58 @@
+<div class="view-insights-container">
+  <div class="header-container">
+    <span class="color-change" routerLink="/project-board">{{'Project Board' | translate}}</span
+    ><span> {{'View Insights'  | translate}}</span>
+  </div>
+  <div class="flex-container flex">
+    <section class="insights">
+      <div class="heading-card">
+        <h4 class="remove-margin-1 modified-padding">
+          <h2 class="heading-style remove-margin">{{'HU 22.0 Angular Track' | translate}}</h2>
+          <b class="global-text--body-1"
+            >{{'Total Number of Issues:' | translate}} {{ this.total }}</b
+          >
+        </h4>
+        <mat-divider></mat-divider>
+        <div class="table-heading flex flex--space-around">
+          <div
+            class="todo flex flex--column flex--align-center"
+            *ngFor="let item of insights"
+          >
+            <h3>{{ item.name }}</h3>
+            <div>
+              <h2 [class]="'remove-margin status-color status-color--' + item.class"
+                  [@divstate]="state"
+              >
+                {{ item.status }}
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress">
+        <h4 class="remove-margin-1"><b>{{'Status Bar' | translate}}</b></h4>
+        <div class="stats flex">
+          <div [ngStyle]="{ flex: percentage[0] }" class="todo-stat" [@prog]="state"></div>
+          <div
+            [ngStyle]="{ flex: percentage[1] }"
+            class="development-stat"
+            [@prog]="state"
+          ></div>
+          <div [ngStyle]="{ flex: percentage[2] }" class="testing-stat" [@prog]="state"></div>
+          <div [ngStyle]="{ flex: percentage[3] }" class="completed-stat" [@prog]="state"></div>
+        </div>
+      </div>
+
+      <div class="description">
+        <div class="color-box" *ngFor="let item of insights">
+          <div [class]="'box box--' + item.class"></div>
+          <p>{{ item.name | translate}}</p>
+        </div>
+      </div>
+    </section>
+    <section class="teammates">
+      <app-teammates [projectID]="selectedProjectID"></app-teammates>
+    </section>
+  </div>
+</div>

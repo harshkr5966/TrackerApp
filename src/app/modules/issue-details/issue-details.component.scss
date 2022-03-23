@@ -1,0 +1,209 @@
+:host {
+  .heading-style {
+    color: #fe7912;
+    margin-top: 0;
+    margin-bottom: 1.4rem;
+    font-size: 1.7rem;
+    font-weight: 500;
+  }
+
+  .card-heading {
+    background-color: #f7f8fa;
+    margin: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .paddingAdd {
+    padding: 0 1.5rem;
+    margin-top: 1rem;
+    display: flex;
+  }
+
+ 
+
+  .colorChange {
+    color: #fe7912;
+    cursor: pointer;
+    margin-right: 0.2rem;
+  }
+
+  .split {
+    margin: 0 1.5rem;
+    display: flex;
+  }
+
+  .main-content {
+    flex: 0.7;
+    padding: 1rem;
+  }
+
+  .button-with-status-card {
+    flex: 0.3;
+    padding: 1rem;
+    ::ng-deep .custom-button {
+      width: 100% !important;
+    }
+  }
+
+  .card {
+    padding: 1.5rem;
+    background-color: #f7f8fa;
+    margin-top: 2rem;
+    ::ng-deep .mat-form-field-infix {
+      font-size: 15px;
+    }
+    ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+      background-color: #fff;
+      border: 2px solid #f1f0fa;
+    }
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .assignee {
+    ::ng-deep .mat-option-text {
+      display: flex;
+      gap: 0.5rem;
+    }
+    ::ng-deep .mat-select-value-text {
+      margin-left: 2rem !important;
+    }
+  }
+
+  .labels {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .label-with-value {
+    display: flex;
+    gap: 1.5rem;
+    width: 50%;
+  }
+
+  .priority {
+    padding: 0.1rem 0.6rem;
+    color: white !important;
+    font-size: 0.7rem !important;
+  }
+
+  @mixin statusColor($color) {
+    ::ng-deep .mat-select-value-text {
+      background-color: $color;
+      padding: 0.2rem 1rem !important;
+      display: block;
+      width: fit-content;
+      color: white;
+    }
+  }
+
+  .todo {
+    @include statusColor(#ffc107);
+  }
+
+  .development {
+    @include statusColor(#fe7912);
+  }
+
+  .testing {
+    @include statusColor(#2650a2);
+  }
+
+  .completed {
+    @include statusColor(#28a745);
+  }
+
+  .comment-heading-align {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .add-comment-with-icon {
+    cursor: pointer;
+    color: #fe7912;
+    display: flex;
+    align-items: center;
+    ::ng-deep .material-icons {
+      font-size: 16px;
+    }
+
+    ::ng-deep .mat-icon {
+      padding-top: 0.4rem;
+    }
+  }
+
+  .comment-detail {
+    display: flex;
+    gap: 2.5rem;
+
+    p {
+      color: #475661;
+      font-size: 0.7rem;
+    }
+  }
+
+  .label-align-value-1 {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .example-full-width {
+    width: 100%;
+    ::ng-deep mat-form-field-infix {
+      height: 600px;
+    }
+  }
+
+  .comments {
+    margin-bottom: 0.3rem;
+    padding: 0.2rem 0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .button-cancel {
+    padding-bottom: 1rem;
+  }
+
+  .button-post {
+    ::ng-deep .mat-raised-button.mat-primary,
+    .mat-fab.mat-primary,
+    .mat-mini-fab.mat-primary {
+      background-color: #1d262d;
+      color: white;
+    }
+
+    padding-bottom: 1rem;
+  }
+
+  .modified-margin {
+    margin: 0.1rem 0;
+    font-weight: 500;
+    &-1 {
+      margin: 0.7rem 0;
+    }
+    &-2 {
+      margin-top: 1.4rem;
+    }
+    &-3 {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .selected {
+    height: 23px;
+    background: url('../../../assets/icons/profile-picture1.svg') no-repeat;
+  }
+
+  .tags {
+    background: #1d262d;
+    color: white !important;
+    padding: 0.2rem 0.3rem;
+  }
+}

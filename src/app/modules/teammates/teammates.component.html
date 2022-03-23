@@ -1,0 +1,38 @@
+<div class="teammates">
+  <h3>{{'Team Members' | translate}}</h3>
+  <h4 class="font-size">{{ teamMembers?.length }}{{' Members' | translate}}</h4>
+
+  <div class="owner">
+    <div class="img-emp-detail-align">
+      <img
+        class="img-size"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoYc99PDDemC-5PwHtA4l8d8PRv1NYOGy3A&usqp=CAU"
+        alt=""
+      />
+      <div class="emp-detail-align flex flex--column">
+        <h4>{{ projectOwner?.name }}</h4>
+        <p>{{ projectOwner?.desination }}</p>
+      </div>
+    </div>
+    <p class="font-size position-right">{{'Owner' | translate}}</p>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="members">
+    <div *ngFor="let user of teamMembers">
+      <div class="owner" *ngIf="user?.name !== projectOwner?.name">
+        <div class="img-emp-detail-align">
+          <img
+            class="img-size"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHoYc99PDDemC-5PwHtA4l8d8PRv1NYOGy3A&usqp=CAU"
+            alt=""
+          />
+          <div class="emp-detail-align">
+            <h4>{{ user?.name }}</h4>
+            <p>{{ user?.desination }}</p>
+          </div>
+        </div>
+        <p class="font-size position-right">{{'Member' | translate}}</p>
+      </div>
+    </div>
+  </div>
+</div>

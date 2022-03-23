@@ -1,0 +1,30 @@
+.create-issue-container {
+  margin: 40px;
+  .heading {
+    margin: 56px 0px 30px 0px;
+  }
+  .row {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 38px;
+    .column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      .dropdown {
+        ::ng-deep .mat-form-field {
+          width: 100%;
+        }
+      }
+    }
+    .story-points {
+      width: 48.8%;
+    }
+  }
+  .form-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    column-gap: 38px;
+  }
+}

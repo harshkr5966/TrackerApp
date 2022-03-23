@@ -1,0 +1,29 @@
+<mat-toolbar class="header-container">
+  <div class="search-bar">
+    <mat-icon *ngIf="showSearchBar" class="search-icon">Search</mat-icon>
+    <mat-form-field *ngIf="showSearchBar" class="search-input">
+      <input type="text" matInput placeholder="Search" />
+    </mat-form-field>
+  </div>
+  <div class="profile flex flex--space-evenly flex--align-end">
+    <span class="text" (click)="doLogout()" >{{'LOGOUT' | translate}}</span> 
+    <span class="text" >Anjali Gupta</span>
+    <span class="li_main"><img src="../../../assets/icons/profile-picture.svg" />
+      <!-- <div class="dd_menu">
+        <div class="dd_left">
+            <ul>
+                 <li>Logout</li>
+                 <li>Profile</li>
+            </ul>
+        </div>
+      </div> -->
+    </span>
+  </div>
+</mat-toolbar>
+<!-- 
+<script>
+  var li_main = document.querySelector(".li_main");
+  li_main.addEventListener("click", function(){
+      this.classList.toggle("active");
+  })
+</script> -->

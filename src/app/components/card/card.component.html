@@ -1,0 +1,34 @@
+<div [routerLink]="['../issue-details', content.id]">
+  <mat-card class="card-container mat-elevation-z0">
+    <mat-card-subtitle class="global-text--subtitle-1 flex flex--space-between">
+      <span>ID: {{ content.id }}</span
+      ><span class="date-field">{{
+        content.createdOn | date: 'dd-MM-yyyy'
+      }}</span>
+    </mat-card-subtitle>
+    <mat-card-title class="global-text--subtitle global-text--ellipsis">{{
+      content.summary
+    }}</mat-card-title>
+    <mat-card-content class="global-text--body global-text--ellipsis">{{
+      content.description
+    }}</mat-card-content>
+    <mat-card-footer class="action-button flex flex--row flex--space-between">
+      <div class="creator-info flex flex--space-between flex--align-center">
+        <img src="../../../assets/icons/profile-picture.svg" />
+        <span class="global-text--subtitle">{{ content.assignee.name }}</span>
+      </div>
+      <div class="priority flex flex--column flex--align-end">
+        <span class="global-text--small">Priority</span>
+        <span
+          class="global-text--small-1 status-chip"
+          [ngClass]="{
+            high: content.priority === 1,
+            medium: content.priority === 2,
+            low: content.priority === 3
+          }"
+          >{{ priority_mapper[content.priority] | uppercase }}</span
+        >
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>

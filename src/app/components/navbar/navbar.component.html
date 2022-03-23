@@ -1,0 +1,49 @@
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened="true" class="side-container">
+    <img src="/assets/icons/logo.svg" class="logo" alt="logo" />
+    <mat-nav-list *ngFor="let tab of tabs" class="nav-list">
+      <a mat-list-item [routerLink]="tab.link" routerLinkActive="active">{{
+        tab.name | translate
+      }}</a>
+    </mat-nav-list>
+    <!-- <div>
+      {{ 'hello' | translate }}
+    </div> -->
+    <nav>
+      <div class="language-container">
+          <!-- <div class="col-9"></div> -->
+          <div class="dropdown">
+              <select style="color:white; size: 20px;" name="LANGUAGE" id="" class="custom-select" (change)="changeLang($event)">
+                  <option style="color:white; size: 14px;" value=""  selected disabled hidden>
+                    <p>LANGUAGE</p>
+                  </option>
+                  <option style="color:white; size: 14px;" value="en"[selected]="lang === 'en'">
+                    <p>English</p>
+                  </option>
+                  <option style="color:white; size: 14px;" value="hi"[selected]="lang === 'hi'">
+                    <p>Hindi</p>
+                  </option>
+                  <option style="color:white; size: 14px;" value="ru"[selected]="lang === 'ru'">
+                    <p>Russian</p>
+                  </option>
+              </select>
+          </div>
+      </div>
+  </nav> 
+
+  </mat-drawer>
+  <mat-drawer-content class="main-container">
+    <app-header
+      [showSearchBar]="
+        router.isActive('project-board', {
+          paths: 'exact',
+          queryParams: 'exact',
+          fragment: 'ignored',
+          matrixParams: 'ignored'
+        })
+      "
+    ></app-header>
+    <!-- <app-login-page></app-login-page> -->
+    <router-outlet></router-outlet
+  ></mat-drawer-content>
+</mat-drawer-container>

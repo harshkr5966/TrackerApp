@@ -1,0 +1,79 @@
+<section class="dashboard-container">
+  <div class="flex flex--row flex--space-between flex--align-center">
+    <h1 class="global-text--title"></h1>
+    <app-button text="view insights" [routerLink]="['../view-insights', selectedProject.projectID]"></app-button>
+  </div>
+  <div class="project-info">
+    <div class="flex flex--column">
+      <mat-label class="global-text--label">{{'project' | translate}}</mat-label>
+      <mat-form-field appearance="fill">
+        <mat-select
+          [formControl]="projectControl"
+          (selectionChange)="onProjectChange($event.value)"
+        >
+          <mat-option
+            *ngFor="let option of projectOptions"
+            [value]="option.value"
+          >
+            {{ option.key }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="flex flex--column">
+      <mat-label class="global-text--label">{{'project owner' | translate}}</mat-label>
+      <mat-form-field appearance="fill">
+        <input matInput [value]="projectOwner" [disabled]="true" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="flex flex--row date-info">
+    <span class="global-text--label-1"
+      >{{'start date:' | translate}}
+      {{ selectedProject.projectStartDate | date: 'dd-MM-yyyy' }}</span
+    >
+    <mat-divider [vertical]="true"></mat-divider>
+    <span class="global-text--label-1"
+      >{{'end date:' | translate}}{{ selectedProject.projectEndDate | date: 'dd-MM-yyyy' }}</span
+    >
+  </div>
+  <div class="flex flex--row flex--space-between filter-section">
+    <div class="flex flex--column">
+      <mat-form-field appearance="fill">
+        <mat-select [formControl]="assigneeFormControl">
+          <mat-option
+            *ngFor="let option of assigneeOptions"
+            [value]="option.value"
+          >
+            {{ option.key }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-label class="global-text--label label">{{'filter assignee' | translate}}</mat-label>
+    </div>
+    <div class="flex flex--column">
+      <mat-form-field appearance="fill">
+        <mat-select [formControl]="priorityFormControl" multiple>
+          <mat-option
+            *ngFor="let option of priorityOptions"
+            [value]="option.value"
+          >
+            {{ option.key }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-label class="global-text--label label">{{'filter priority' | translate}}</mat-label>
+    </div>
+  </div>
+</section>
+<section class="main-container">
+  <div class="flex flex--column" *ngFor="let item of issues">
+    <h4 class="global-text--table-header table-header">
+      {{ item.name | uppercase }}
+    </h4>
+    <div *ngIf="item.issues.length === 0" class="empty-container"></div>
+    <div *ngFor="let issue of item.issues" class="table-columns">
+      <app-card [content]="issue"></app-card>
+    </div>
+  </div>
+</section>

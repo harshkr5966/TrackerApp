@@ -1,0 +1,55 @@
+:host {
+  .teammates {
+    padding: 1.5rem;
+  }
+
+  .emp-detail-align {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    p {
+      font-size: 0.7rem;
+      margin: 0;
+    }
+    h4 {
+      width: max-content;
+    }
+  }
+
+  .img-emp-detail-align {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .img-size {
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .font-size {
+    font-size: 12px;
+  }
+
+  .position-right {
+    margin-left: auto;
+  }
+
+  .owner {
+    display: flex;
+    gap: 10rem;
+    align-items: center;
+    padding: 0.8rem 0;
+  }
+
+  .members {
+    margin-top: 1rem;
+  }
+
+  h3,
+  h4 {
+    margin: 0 !important;
+    font-weight: 500;
+  }
+}

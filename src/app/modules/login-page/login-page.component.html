@@ -1,0 +1,78 @@
+<!-- <p>login-page works!</p> -->
+<mat-drawer-container class="container">
+    <mat-drawer mode="side" opened="true" class="side-container">
+      <div class="logo-container">
+        <img src="../../../assets/icons/logo.svg" class="logo" alt="logo" />
+      </div>
+      <div class="logo-container-2">
+        <img src="../../../assets/icons/undraw_sorting_thoughts_re_fgli 1.png" class="logo" alt="logo" />
+      </div>
+      
+      <nav>
+        <div class="language-container">
+            <!-- <div class="col-9"></div> -->
+            <div class="dropdown">
+                <select style="color:white; size: 20px;" name="LANGUAGE" id="" class="custom-select" (change)="changeLang($event)">
+                    <option style="color:white; size: 14px;" value=""  selected disabled hidden>
+                      <p>LANGUAGE</p>
+                    </option>
+                    <option style="color:white; size: 14px;" value="en"[selected]="lang === 'en'">
+                      <p>English</p>
+                    </option>
+                    <option style="color:white; size: 14px;" value="hi"[selected]="lang === 'hi'">
+                      <p>Hindi</p>
+                    </option>
+                    <option style="color:white; size: 14px;" value="ru"[selected]="lang === 'ru'">
+                      <p>Russian</p>
+                    </option>
+                </select>
+            </div>
+        </div>
+    </nav> 
+
+    </mat-drawer>
+
+
+    <mat-drawer-content class="main-container">
+      <section class="login-container">
+        <h1 class="heading global-text--heading-4">{{'login' | translate}}</h1>
+        <section class="login-form-container">
+          <form [formGroup]="loginForm">
+            <div class="row">
+              <div class="column">
+                <mat-label for="email">{{'email' | translate }}</mat-label>
+                <mat-form-field class="email" appearance="fill">
+                  <input formControlName="email" matInput placeholder="Email" />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <mat-label for="password">{{'password' | translate}}</mat-label>
+                <mat-form-field class="password" appearance="fill">
+                  <input
+                    type="password"
+                    formControlName="password"
+                    matInput
+                    placeholder="Password"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="forgot-container">
+              <p>{{'forgot password' | translate}}</p>
+            </div>
+            <!-- <div class="login-btn">
+              <button (btnClick)="loginProcess()">
+                <p>LOGIN</p>
+              </button>
+            </div> -->
+            <div class="btn-container">
+              <app-button (btnClick)="loginProcess()" [text]="'Login'" [btnType]="'primary'" style="width: 100px;"></app-button>
+            </div>
+          </form>
+        </section>
+      </section>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  

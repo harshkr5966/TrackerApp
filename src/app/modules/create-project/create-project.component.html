@@ -1,0 +1,90 @@
+<section class="create-project-container">
+  <h1 class="heading global-text--heading-4">{{'Create Project' | translate}}</h1>
+  <section class="create-project-form">
+    <form [formGroup]="createNewProject">
+      <div class="row">
+        <div class="column">
+          <mat-label for="summary">{{'Summary' | translate}}</mat-label>
+          <mat-form-field class="summary" appearance="fill">
+            <input
+              formControlName="projectName"
+              matInput
+              placeholder="Project Name"
+            />
+            <mat-error
+              *ngIf="createNewProject.get('projectName')?.hasError('required')"
+              >{{'required' | translate}}</mat-error
+            >
+            <mat-error
+              *ngIf="
+                this.createNewProject.get('projectName')?.hasError('maxlength')
+              "
+              >Length should be 150 characters</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="column">
+          <mat-label for="owner">{{'Owner' | translate}}</mat-label>
+          <mat-form-field class="summary" appearance="fill">
+            <mat-select formControlName="projectOwner" placeholder="Select">
+              <mat-option *ngFor="let item of owners" [value]="item.value">
+                {{ item.key }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="createNewProject.get('projectOwner')?.hasError('required')"
+              >{{'required' | translate}}</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <mat-label for="">{{'Project Start Date' | translate}}</mat-label>
+          <mat-form-field class="" appearance="fill">
+            <input
+              placeholder="MM/DD/YYYY"
+              formControlName="projectStartDate"
+              matInput
+              [matDatepicker]="picker"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="column">
+          <mat-label for="">{{'Project End Date' | translate}}</mat-label>
+          <mat-form-field class="" appearance="fill">
+            <input
+              placeholder="MM/DD/YYYY"
+              formControlName="projectEndDate"
+              matInput
+              [matDatepicker]="picker1"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-actions">
+        <app-button
+          (btnClick)="resetForm()"
+          [text]="'RESET'"
+          [btnType]="'secondary'"
+        ></app-button>
+        <app-button
+          [disabled]="!createNewProject.valid"
+          (btnClick)="submitForm()"
+          [text]="'CREATE'"
+          [btnType]="'primary'"
+        ></app-button>
+      </div>
+    </form>
+  </section>
+</section>

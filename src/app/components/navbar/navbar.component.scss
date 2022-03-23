@@ -1,0 +1,94 @@
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .logo {
+    width: 207px;
+    height: 33px;
+    padding: 37px;
+    margin-bottom: 16px;
+  }
+
+  .nav-list {
+    padding: 5px;
+    margin: 0 0px 5px 15px;
+
+    .mat-list-item {
+      color: white;
+      line-height: 36px;
+      font-size: 14px;
+      letter-spacing: 1.25px;
+    }
+
+    .active {
+      color: #fe7912;
+      border-left: 4px solid #fe7912;
+      border-radius: 4px;
+    }
+  }
+
+  .side-container {
+    width: 282px;
+    background-color: #1d262d;
+  }
+
+  .main-container {
+    background: white;
+  }
+}
+
+
+nav{
+  // border: 2px solid white;
+  margin-top: 450px;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  height: 50px;
+
+  .language-container{
+    // border: 2px solid yellow;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .dropdown{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // border: 2px solid white;
+
+      .custom-select{
+        border: 2px solid white;
+        width: 240px;
+        height: 52px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #28343E;
+        
+        select{
+          color: white;
+        }
+
+        option{
+          display: flex;
+          align-items: center;
+          text-align: center;
+
+          p{
+            size: 20px;
+          }
+        }
+
+      }
+
+    }  
+
+  }
+}

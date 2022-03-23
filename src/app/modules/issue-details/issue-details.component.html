@@ -1,0 +1,184 @@
+<div class="paddingAdd">
+  <span class="colorChange" routerLink="/project-board">{{'Project Board' | translate}}</span
+  ><span> {{'View Details' | translate}}</span>
+</div>
+<div class="card-heading">
+  <h2 class="heading-style">{{ data?.summary }}</h2>
+  <p class="modified-margin modified-margin-2">
+    {{ data?.description }}
+  </p>
+</div>
+<div class="split">
+  <div class="main-content">
+    <p class="global-text--label-1 modified-margin">{{'Description' | translate}}</p>
+    <p class="global-text--label modified-margin modified-margin-3">
+      {{ data?.description }}
+    </p>
+    <mat-divider></mat-divider>
+    <p class="global-text--heading-1 modified-margin modified-margin-2">
+      {{'Details' | translate}}
+    </p>
+    <div class="labels">
+      <div class="label-with-value">
+        <h5 class="global-text--label-1 modified-margin-1">{{'Type' | translate}}</h5>
+        <h5 class="global-text--label-1 modified-margin-1">
+          {{ type[data.type - 1].key }}
+        </h5>
+      </div>
+      <div class="label-with-value">
+        <h5 class="global-text--label-1 modified-margin-1">{{'Sprint' | translate}}</h5>
+        <h5 class="global-text--label modified-margin-1">{{ data?.sprint }}</h5>
+      </div>
+      <div class="label-with-value">
+        <h5 class="global-text--label-1 modified-margin-1">{{'Tags' | translate}}</h5>
+        <h5
+          *ngFor="let tag of data?.tags"
+          class="global-text--label tags modified-margin-1"
+        >
+          {{ tag }}
+        </h5>
+      </div>
+      <div class="label-with-value">
+        <h5 class="global-text--label-1 modified-margin-1">{{'Priority' | translate}}</h5>
+        <h5
+          class="global-text--label priority modified-margin-1"
+          [ngClass]="{
+            high: data.priority === 1,
+            medium: data.priority === 2,
+            low: data.priority === 3
+          }"
+        >
+          {{ priority[data.priority - 1] }}
+        </h5>
+      </div>
+      <div class="label-with-value">
+        <h5 class="global-text--label-1 modified-margin-1">{{'Story Points' | translate}}</h5>
+        <h5 class="global-text--label modified-margin-1">
+          {{ data?.storyPoint }}
+        </h5>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="comment-heading-align modified-margin-2">
+      <p class="global-text--heading-1 modified-margin">
+        {{'Comments' | translate }} <mat-divider [vertical]="true"></mat-divider>
+      </p>
+      <div class="add-comment-with-icon">
+        <mat-icon>add_box</mat-icon>
+        <h5
+          (click)="toggleCommentBox()"
+          class="modified-margin-1"
+          style="font-size: 14px; font-weight: 500"
+        >
+          {{'Add Comment' | translate}}
+        </h5>
+      </div>
+    </div>
+
+    <div class="comment-box-with-buttons" *ngIf="toggleStatus">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Write here</mat-label>
+        <input matInput [(ngModel)]="newComment" />
+      </mat-form-field>
+
+      <div class="actions">
+        <div class="button-post">
+          <app-button (btnClick)="postComment()" text="Post"></app-button>
+        </div>
+        <div class="button-cancel">
+          <app-button
+            (btnClick)="toggleCommentBox()"
+            text="Cancel"
+          ></app-button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let comment of comments" class="comments">
+      <div class="comment">
+        <p style="margin-bottom: 0" class="global-text--body-1 modified-margin">
+          {{ comment?.comment }}
+        </p>
+        <div class="comment-detail">
+          <p class="global-text--subtitle-2 modified-margin">
+            {{'Posted on' | translate}} {{ comment?.createdOn | date: 'dd-MM-yyyy' }}
+          </p>
+          <p class="global-text--subtitle-2 modified-margin">
+            {{'Added by' | translate}} {{ comment?.createdBy?.name }}
+          </p>
+        </div>
+      </div>
+      <mat-divider style="margin-top: 0.5rem"></mat-divider>
+    </div>
+  </div>
+  <div class="button-with-status-card">
+    <app-button
+      (btnClick)="sendDataToCreateIssues()"
+      text="Edit Issue"
+    ></app-button>
+    <div class="card">
+      <div>
+        <p class="global-text--body-1 modified-margin">{{'Status' | translate}}</p>
+        <mat-form-field appearance="fill">
+          <mat-select
+            [(ngModel)]="status"
+            [ngClass]="{
+              todo: +status === 1,
+              development: +status === 2,
+              testing: +status === 3,
+              completed: +status === 4
+            }"
+          >
+            <mat-option
+              (click)="changeStatus()"
+              *ngFor="let status of statuses"
+              [value]="status.value"
+            >
+              {{ status?.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <p class="global-text--body-1 modified-margin">{{'Assignee' | translate}}</p>
+        <mat-form-field appearance="fill">
+          <mat-select
+            [(ngModel)]="assignee"
+            [ngClass]="{ selected: true }"
+            class="assignee"
+          >
+            <mat-option
+              (click)="changeAsignee()"
+              *ngFor="let assignee of assigneeList"
+              [value]="assignee?.id"
+              class="flex flex--align-center assignee"
+            >
+              <img src="../../../assets/icons/profile-picture.svg" />
+              {{ assignee?.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="label-align-value-1">
+        <p
+          class="global-text--label-1 modified-margin"
+          style="padding-right: 0.9rem"
+        >
+          {{'Created On' | translate}}
+        </p>
+        <p class="global-text--label-1 modified-margin">
+          {{ data?.createdOn | date: 'dd-MM-yyyy' }}
+        </p>
+      </div>
+
+      <div class="label-align-value-1">
+        <p class="global-text--label-1 modified-margin">{{'Last Updated' | translate}}</p>
+        <p class="global-text--label-1 modified-margin">
+          {{ data?.updatedOn | date: 'dd-MM-yyyy h:mm a' }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
